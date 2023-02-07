@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+{% endfor %}
+{% if id==current_user.id %}
+
+        <h1>Kullanıcı Değişikliği : </h1>
+        <br/>
+
+    <div class="shadow p-3 mb-5 bg-body rounded">
+        <form action="/update/{{name_to_update.id}}" method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.name.label(class="form-label") }}
+            {{ form.name(class="form-control", value=name_to_update.name) }}
+            {{ form.username.label(class="form-label") }}
+            {{ form.username(class="form-control", value=name_to_update.username) }}
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class="form-control", value=name_to_update.email) }}
+            {{ form.favourite_color.label(class="form-label") }}
+            {{ form.favourite_color(class="form-control", value=name_to_update.favourite_color) }}
+            {{ form.about_author.label(class="form-label") }}
+            {{ form.about_author(class="form-control", value=name_to_update.about_author)}}
+            <br/>
+            <br/>
+            {{ form.submit(class="btn btn-primary") }}
+            <a href="{{url_for('delete', id=id)}}"class="btn btn-danger">Sil!</a>
+    </form>
+    </div>
+<br/><br/><br/>
+{% else %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    Özür dileriz! Bu kullanıcı verilerini değiştiremezsiniz!..
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <h3>Erişim engellendi!</h3>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+{% endfor %}
+
+{% if email %}
+    <h1>E-posta : {{email}}</h1>
+    <h1>Şifre : {{password}}</h1>
+    <br/>
+    <h2>Şu bilgiyi buldum :</h2>
+    İsim :{{pw_to_check.name}}<br/>
+    E-posta :{{pw_to_check.email}}<br/>
+    Şifre :{{pw_to_check.password_hash}}<br/>
+    Passed : {{passed}}
+
+
+{% else %}
+    <h1>E-postanız ve şifreniz nedir?</h1>
+    <br/>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.email.label(class="form-label") }}
+        {{ form.email(class="form-control") }}
+        {{ form.password_hash.label(class="form-label") }}
+        {{ form.password_hash(class="form-control") }}
+        <br/>
+        <br/>
+        {{ form.submit(class="btn btn-primary") }}
+    </form>
+
+{% endif %}
+{% endblock %}

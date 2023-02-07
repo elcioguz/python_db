@@ -1,0 +1,1 @@
+document.getElementById('demo').innerHTML="Bu Java Script ile yaratılmıştır!";
