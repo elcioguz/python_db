@@ -19,7 +19,8 @@ ckeditor = CKEditor(app)
 
 # Add database
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///personel.db'
-app.config['SQLALCHEMY_DATABASE_URI'] ="postgresql://postgres:postgres@localhost:5432/personel"
+#app.config['SQLALCHEMY_DATABASE_URI'] ="postgresql://postgres:postgres@localhost:5432/personel"
+app.config['SQLALCHEMY_DATABASE_URI'] ="postgresql://postgres:UUkc32LrdZTDntP5K0ZP@containers-us-west-112.railway.app: 6412/railway"
 # Secret key
 app.config['SECRET_KEY'] = "aH1Crt67x01askR1U"
 
@@ -383,5 +384,5 @@ class Personel(db.Model, UserMixin):
         return '<Personel %r>' % self.name
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0',port=5000, debug=True)
 
