@@ -306,7 +306,7 @@ def index():
 
 @app.route('/user/<name>')
 def user(name):
-    engine = create_engine('postgresql://postgres:postgres@localhost:5432/personel')
+    engine = create_engine('postgresql://postgres:UUkc32LrdZTDntP5K0ZP@containers-us-west-112.railway.app: 6412/railway')
     df = pd.read_sql_query('SELECT * from personel', engine)
     df1 = pd.read_sql_query('SELECT * from posts', engine)
     engine.dispose()
