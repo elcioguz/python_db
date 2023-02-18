@@ -1,4 +1,4 @@
-from flask import Flask, render_template, flash, request, redirect, url_for
+from flask import Flask, render_template, flash, request, redirect, url_for, send_file
 from datetime import datetime, timedelta, time
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -304,8 +304,14 @@ def update(id):
 def index():
     return render_template('greeting.html')
 
-@app.route('/user/<name>')
-def user(name):
+@app.route('/rapor')
+def rapor():
+    return render_template('download.html')
+
+#@app.route('/user/<name>')
+#def user(name):
+@app.route('/download')
+def yukle():
     engine = create_engine('postgresql://postgres:UUkc32LrdZTDntP5K0ZP@containers-us-west-112.railway.app: 6412/railway')
     df = pd.read_sql_query('SELECT * from personel', engine)
     df1 = pd.read_sql_query('SELECT * from posts', engine)
@@ -314,7 +320,9 @@ def user(name):
     with pd.ExcelWriter('personel_verisi.xlsx') as writer:
         df.to_excel(writer, sheet_name='Pers', index=False)
         df1.to_excel(writer, sheet_name='Posts', index=False)
-    return render_template('hello.html', name=name)
+    #return render_template('hello.html', name=name)
+    path='personel_verisi.xlsx'
+    return send_file(path,as_attachment=True)
 
 # Create Password Test Page
 @app.route('/user/test_pw', methods=['GET', 'POST'])
