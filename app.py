@@ -312,7 +312,8 @@ def rapor():
 #def user(name):
 @app.route('/download')
 def yukle():
-    engine = create_engine('postgresql://postgres:UUkc32LrdZTDntP5K0ZP@containers-us-west-112.railway.app: 6412/railway')
+    #'postgresql://postgres:UUkc32LrdZTDntP5K0ZP@containers-us-west-112.railway.app: 6412/railway'
+    engine = create_engine('postgresql://postgres:yETibMisdEf9aO7l8cCL@containers-us-west-112.railway.app:6412/railway')
     df = pd.read_sql_query('SELECT * from personel', engine)
     df1 = pd.read_sql_query('SELECT * from posts', engine)
     engine.dispose()
